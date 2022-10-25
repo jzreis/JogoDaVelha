@@ -4,6 +4,7 @@ import javax.swing.*;
 
 public class TicTacToe implements ActionListener {
 
+//Declaracao dos objetos
 	JFrame window = new JFrame();
 	JLabel text = new JLabel();
 	JPanel title = new JPanel();
@@ -11,6 +12,7 @@ public class TicTacToe implements ActionListener {
 
 	JButton[] buttons = new JButton[9];
 
+//Variavel pra controlar quem vai jogar 
 	private boolean player1time = true;
 
 	public TicTacToe() {
@@ -21,17 +23,19 @@ public class TicTacToe implements ActionListener {
 		window.setVisible(true);
 
 		text.setFont(new Font("Matrix", Font.BOLD, 75));
-//text.setBackground(new Color(0,172,237));
 		text.setBackground(new Color(0, 0, 0));
 		text.setHorizontalAlignment(JLabel.CENTER);
+//text.setText exibe o texto em cima do grid de botoes 
 		text.setText("Jogo da Velha");
 		text.setOpaque(true);
 
 		title.setLayout(new BorderLayout());
 		title.setBounds(0, 0, 800, 200);
-
+		
+//3x3 dos botoes 
 		button.setLayout(new GridLayout(3, 3));
 
+//Configuracoes dos botoes 
 		for (int i = 0; i < 9; i++) {
 			buttons[i] = new JButton();
 
@@ -49,6 +53,7 @@ public class TicTacToe implements ActionListener {
 
 	}
 
+//Essa funcao e responsavel por pegar os clicks nos botoes e dizer qual player joga em cada vez 
 	public void actionPerformed(ActionEvent e) {
 
 		for (int i = 0; i < 9; i++) {
@@ -84,7 +89,7 @@ public class TicTacToe implements ActionListener {
 
 	public void check() {
 		
-//Variavel para saber se o jogo deu uma vitoria ou um empate 
+//Variaveis para saber se o jogo deu uma vitoria ou um empate 
 		boolean empate,win;
 		empate = false;
 		win=false;
@@ -124,7 +129,6 @@ public class TicTacToe implements ActionListener {
 		}
 
 //Possiblidades de vitoria do O
-
 		if (buttons[0].getText() == "O" && buttons[1].getText() == "O" && buttons[2].getText() == "O") {
 			win(0, 1, 2);
 			win=true;
@@ -159,9 +163,6 @@ public class TicTacToe implements ActionListener {
 		}
 
 //Descobre se deu empate
-
-		
-
 		int cont = 0;
 		for (int i = 0; i < 9; i++) {
 			if ((buttons[i].getText() == "O") || (buttons[i].getText() == "X")) {
@@ -177,9 +178,8 @@ public class TicTacToe implements ActionListener {
 		}
 	}
 
-//Metodo para contar se todos os botoes ja foram presisonados
-
-	public boolean win(int x, int y, int z) {
+//Colore a combinacao que foi vencedora
+	public void win(int x, int y, int z) {
 
 		buttons[x].setBackground(new Color(0, 255, 0));
 		buttons[y].setBackground(new Color(0, 255, 0));
@@ -192,9 +192,8 @@ public class TicTacToe implements ActionListener {
 		text.setBackground(new Color(0, 255, 0));
 		text.setText("Ganhou!!!");
 
-		return true;
 	}
-
+//Limpa o grid de botoes,so que eu ainda nao utilizei essa funcao no codigo 
 	public void clear() {
 		for (int i = 0; i < 9; i++) {
 			buttons[i].setText("");
